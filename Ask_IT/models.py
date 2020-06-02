@@ -17,5 +17,3 @@ class Category(models.Model):
     description = models.TextField(max_length=100)
     parent = models.ForeignKey("self", on_delete=models.CASCADE)
 
-# tabela wątek -> odnośnik do kategorii i osoby i inne pierdoły
-# tabela post (odpowiedź)
