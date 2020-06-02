@@ -19,5 +19,5 @@ from . import views
 app_name = "Ask.IT"
 
 urlpatterns = [
-    path("", views.base, name="base"),
+    path("", views.index, name="index"),
 ]
