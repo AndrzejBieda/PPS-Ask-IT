@@ -10,3 +10,12 @@ class UserAdditional(models.Model):
 
     # def __str__(self):
     #     return self.avatar
+
+
+class Category(models.Model):
+    name = models.TextField(max_length=100)
+    description = models.TextField(max_length=100)
+    parent = models.ForeignKey("self", on_delete=models.CASCADE)
+
+# tabela wątek -> odnośnik do kategorii i osoby i inne pierdoły
+# tabela post (odpowiedź)
