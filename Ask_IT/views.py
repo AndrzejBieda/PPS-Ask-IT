@@ -8,4 +8,4 @@ from django.http import HttpResponse
 #     return render(request=cos, template_name="base.html")
 
 def base(request):
-    return render(request, "Ask_IT/base.html")
+    return render(request, "base.html")
