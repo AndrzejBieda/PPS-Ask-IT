@@ -2,6 +2,29 @@
 {% load static %}
 {% block content %}
 
+{% for k in kategorie %}
+
+{{k.name}}<br/>
+
+{% endfor %}
+
+
+<br/><br/><br/>
+{% for i in kategorie %}
+
+    {% if i.parent == null %}
+        {{i.name}}<br/>
+
+        {% for j in kategorie %}
+            {% if j.parent == i.id %}
+                {{j.name}}<br/>
+
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+{% endfor %}
+
 <div id="page">
     <div id="header" class="bg-light">
         <div class="container">
@@ -89,7 +112,8 @@
                                                         </div>
                                                         <div class="media-body mx-2">
                                                             <a href="#" class="category-title">Frameworki</a>
-                                                            <p class="category-description mt-1">Kategoria w której znajdują się różne frameworki języka Java.</p>
+                                                            <p class="category-description mt-1">Kategoria w której
+                                                                znajdują się różne frameworki języka Java.</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -144,8 +168,11 @@
                                                                             </svg>
                                                                         </div>
                                                                         <div class="media-body mx-2">
-                                                                            <a href="#" class="category-title">Spring</a>
-                                                                            <p class="category-description mt-1">Kategoria dotycząca frameworka Spring.</p>
+                                                                            <a href="#"
+                                                                               class="category-title">Spring</a>
+                                                                            <p class="category-description mt-1">
+                                                                                Kategoria dotycząca frameworka
+                                                                                Spring.</p>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -175,70 +202,70 @@
                         </div>
                     </div>
                 </div>
-<!--                <div class="card">-->
-<!--                    <div class="card-header" id="headingTwo">-->
-<!--                        <h2 class="mb-0">-->
-<!--                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"-->
-<!--                                    data-target="#collapseTwo" aria-expanded="false"-->
-<!--                                    aria-controls="collapseTwo">-->
-<!--                                Collapsible Group Item #2-->
-<!--                            </button>-->
-<!--                        </h2>-->
-<!--                    </div>-->
-<!--                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"-->
-<!--                         data-parent="#categories-level-1">-->
-<!--                        <div class="card-body">-->
-<!--                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry-->
-<!--                            richardson ad-->
-<!--                            squid.-->
-<!--                            3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa-->
-<!--                            nesciunt-->
-<!--                            laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid-->
-<!--                            single-origin-->
-<!--                            coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer-->
-<!--                            labore-->
-<!--                            wes-->
-<!--                            anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.-->
-<!--                            Leggings-->
-<!--                            occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably-->
-<!--                            haven't-->
-<!--                            heard-->
-<!--                            of them accusamus labore sustainable VHS.-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="card">-->
-<!--                    <div class="card-header" id="headingThree">-->
-<!--                        <h2 class="mb-0">-->
-<!--                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"-->
-<!--                                    data-target="#collapseThree" aria-expanded="false"-->
-<!--                                    aria-controls="collapseThree">-->
-<!--                                Collapsible Group Item #3-->
-<!--                            </button>-->
-<!--                        </h2>-->
-<!--                    </div>-->
-<!--                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"-->
-<!--                         data-parent="#categories-level-1">-->
-<!--                        <div class="card-body">-->
-<!--                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry-->
-<!--                            richardson ad-->
-<!--                            squid.-->
-<!--                            3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa-->
-<!--                            nesciunt-->
-<!--                            laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid-->
-<!--                            single-origin-->
-<!--                            coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer-->
-<!--                            labore-->
-<!--                            wes-->
-<!--                            anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.-->
-<!--                            Leggings-->
-<!--                            occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably-->
-<!--                            haven't-->
-<!--                            heard-->
-<!--                            of them accusamus labore sustainable VHS.-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
+                <!--                <div class="card">-->
+                <!--                    <div class="card-header" id="headingTwo">-->
+                <!--                        <h2 class="mb-0">-->
+                <!--                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"-->
+                <!--                                    data-target="#collapseTwo" aria-expanded="false"-->
+                <!--                                    aria-controls="collapseTwo">-->
+                <!--                                Collapsible Group Item #2-->
+                <!--                            </button>-->
+                <!--                        </h2>-->
+                <!--                    </div>-->
+                <!--                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"-->
+                <!--                         data-parent="#categories-level-1">-->
+                <!--                        <div class="card-body">-->
+                <!--                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry-->
+                <!--                            richardson ad-->
+                <!--                            squid.-->
+                <!--                            3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa-->
+                <!--                            nesciunt-->
+                <!--                            laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid-->
+                <!--                            single-origin-->
+                <!--                            coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer-->
+                <!--                            labore-->
+                <!--                            wes-->
+                <!--                            anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.-->
+                <!--                            Leggings-->
+                <!--                            occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably-->
+                <!--                            haven't-->
+                <!--                            heard-->
+                <!--                            of them accusamus labore sustainable VHS.-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="card">-->
+                <!--                    <div class="card-header" id="headingThree">-->
+                <!--                        <h2 class="mb-0">-->
+                <!--                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"-->
+                <!--                                    data-target="#collapseThree" aria-expanded="false"-->
+                <!--                                    aria-controls="collapseThree">-->
+                <!--                                Collapsible Group Item #3-->
+                <!--                            </button>-->
+                <!--                        </h2>-->
+                <!--                    </div>-->
+                <!--                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"-->
+                <!--                         data-parent="#categories-level-1">-->
+                <!--                        <div class="card-body">-->
+                <!--                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry-->
+                <!--                            richardson ad-->
+                <!--                            squid.-->
+                <!--                            3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa-->
+                <!--                            nesciunt-->
+                <!--                            laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid-->
+                <!--                            single-origin-->
+                <!--                            coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer-->
+                <!--                            labore-->
+                <!--                            wes-->
+                <!--                            anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.-->
+                <!--                            Leggings-->
+                <!--                            occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably-->
+                <!--                            haven't-->
+                <!--                            heard-->
+                <!--                            of them accusamus labore sustainable VHS.-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
             </div>
         </div>
     </div>

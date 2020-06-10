@@ -13,6 +13,10 @@ def base(request):
 def index(request):
     return render(request, 'Ask_IT/index.html')
 
+
 def kategorie(request):
+    # kat = Category.objects.all
+    # for i in kat:
+    #     print(i.name)
     return render(request, 'Ask_IT/kategorie.html',
                   {"kategorie": Category.objects.all})
