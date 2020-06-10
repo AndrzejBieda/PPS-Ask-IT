@@ -16,3 +16,7 @@ def index(request):
 def kategorie(request):
     return render(request, 'Ask_IT/kategorie.html',
                   {"kategorie": Category.objects.all})
+
+
+def bbcode(request):
+    return render(request, 'Ask_IT/bbcode.html')

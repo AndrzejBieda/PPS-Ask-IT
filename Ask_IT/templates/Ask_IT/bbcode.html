@@ -6,5 +6,16 @@
 </head>
 <body>
 
+{% load bbcode_tags %}
+{% bbcode entry.bbcode_content %}
+
+{{ "[b]Write some bbcodes![/b]"|bbcode }}
+<br/>
+{{ "[color=red]red text[/color]"|bbcode }}
+<br/>
+{{ "aasdas[img]https://www.wykop.pl/cdn/c3201142/comment_WovcDb4da3hWR4WCDwxawOZMW95f2PYA.jpg[/img]aaa [br]
+sasdasd"|bbcode }}
+
+
 </body>
 </html>

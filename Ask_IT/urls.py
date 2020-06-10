@@ -21,4 +21,5 @@ app_name = "Ask.IT"
 urlpatterns = [
     path("", views.index, name="index"),
     path("kategorie/", views.kategorie, name="kategorie"),
+    path("bbcode/", views.bbcode, name="bbcode"),
 ]
