@@ -1,13 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-
 # Create your views here.
 from Ask_IT.models import Category
-
-
-def base(request):
-    return render(request, "Ask_IT/base.html")
 
 
 def index(request):
@@ -15,8 +10,5 @@ def index(request):
 
 
 def kategorie(request):
-    # kat = Category.objects.all
-    # for i in kat:
-    #     print(i.name)
     return render(request, 'Ask_IT/kategorie.html',
-                  {"kategorie": Category.objects.all})
+                  {"categories": Category.objects.all()})
