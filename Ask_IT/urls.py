@@ -23,4 +23,5 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("kategorie/", views.categories, name="categories"),
     path("bbcode/", views.bbcode, name="bbcode"),
+    path("pokazbb/", views.pokazbb, name="pokazbb"),
 ]

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+{% load bbcode_tags %}
+{% bbcode entry.bbcode_content %}
+
+
+{% for i in questions %}
+
+{{ i.content|safe|bbcode }}
+<br/><br/>
+
+{% endfor %}
+
+
+</body>
+</html>

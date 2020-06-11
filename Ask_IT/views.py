@@ -1,9 +1,14 @@
+import datetime
+
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
-from Ask_IT.models import Category
-from .forms import NameForm
+from Ask_IT.forms import QuestionContent
+from Ask_IT.models import Category, Question, User
+
+
+# from .forms import NameForm
 
 
 def base(request):
@@ -20,18 +25,45 @@ def categories(request):
 
 
 def bbcode(request):
-    # if this is a POST request we need to process the form data
+    return render(request, 'Ask_IT/bbcode.html')
+
+
+def bbcode(request):
     if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        form = NameForm(request.POST)
-        # check whether it's valid:
+        form = QuestionContent(request.POST)
         if form.is_valid():
-            bbcode = form.save(commit=False)
-            bbcode.save()
-            return HttpResponseRedirect('/bbcode/')
-
-    # if a GET (or any other method) we'll create a blank form
+            # titlefromform = form.cleaned_data.get('title')
+            titlefromform = "SUPER TYTUŁ"
+            contentfromform = form.cleaned_data.get('content')
+            datetoform = datetime.datetime.now()
+            authortoform = User.objects.get(id=1)
+            categorytoform = Category.objects.get(id=3)
+            a = Question(title=titlefromform, content=contentfromform, author=authortoform, date=datetoform,
+                         category=categorytoform)
+            a.save()
+            return HttpResponseRedirect('../pokazbb/')
     else:
-        form = NameForm()
+        form = QuestionContent()
+        return render(request, 'Ask_IT/bbcode.html')
 
-    return render(request, 'Ask_IT/bbcode.html', {'form': form})
+
+def pokazbb(request):
+    return render(request, 'Ask_IT/pokazbb.html',
+                  {"questions": Question.objects.all()})
+
+# def bbcode(request):
+#     # if this is a POST request we need to process the form data
+#     if request.method == 'POST':
+#         # create a form instance and populate it with data from the request:
+#         form = NameForm(request.POST)
+#         # check whether it's valid:
+#         if form.is_valid():
+#             bbcode = form.save(commit=False)
+#             bbcode.save()
+#             return HttpResponseRedirect('/bbcode/')
+#
+#     # if a GET (or any other method) we'll create a blank form
+#     else:
+#         form = NameForm()
+#
+#     return render(request, 'Ask_IT/bbcode.html', {'form': form})
