@@ -9,14 +9,21 @@
 {% load bbcode_tags %}
 {% bbcode entry.bbcode_content %}
 
-{{ "[b]Write some bbcodes![/b]"|bbcode }}
-<br/>
-{{ "[color=red]red text[/color]"|bbcode }}
-<br/>
-{{ "aasdas[img]https://www.wykop.pl/cdn/c3201142/comment_WovcDb4da3hWR4WCDwxawOZMW95f2PYA.jpg[/img]aaa [br]
-sasdasd"|bbcode }}
-<br/>
-{{ "[code]def kategorie(request):[br] return render(request, 'Ask_IT/kategorie.html',[/code]"|bbcode }}
+<!--{{ "[b]Write some bbcodes![/b]"|bbcode }}-->
+<!--<br/>-->
+<!--{{ "[color=red]red text[/color]"|bbcode }}-->
+<!--<br/>-->
+<!--{{ "aasdas[img]https://www.wykop.pl/cdn/c3201142/comment_WovcDb4da3hWR4WCDwxawOZMW95f2PYA.jpg[/img]aaa [br]-->
+<!--sasdasd"|bbcode }}-->
+<!--<br/>-->
+<!--{{ "[code]def kategorie(request):[br] return render(request, 'Ask_IT/kategorie.html',[/code]"|bbcode }}-->
+
+
+<form action="/bbcode/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
 
 
 </body>

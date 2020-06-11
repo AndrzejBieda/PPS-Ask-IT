@@ -1,8 +1,10 @@
 from django.contrib.auth.models import User
 from django.db import models
+from precise_bbcode.fields import BBCodeTextField
 
 
 # Create your models here.
+
 
 class UserAdditional(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -29,11 +31,10 @@ class Category(models.Model):
 
 class Question(models.Model):
     title = models.TextField()
-    description = models.TextField()
+    content = BBCodeTextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    # best_answer = models.ForeignKey(Answer, on_delete=models.CASCADE())
 
 
 class Answer(models.Model):
@@ -41,3 +42,8 @@ class Answer(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
+
+
+class BestAnswer(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
