@@ -22,14 +22,6 @@ def wpis(request):
 def question(request):
     return render(request, 'Ask_IT/nowe-pytanie.html')
 
-
-def rejestracja(request):
-    return render(request, 'Ask_IT/rejestracja.html')
-
-
-def logowanie(request):
-    return render(request, 'Ask_IT/logowanie.html')
-
 def konto(request):
     return render(request, 'Ask_IT/konto.html')
 
@@ -63,7 +55,7 @@ def login_request(request):
                   context={"form": form})
 
 
-def register(request):
+def rejestracja(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
