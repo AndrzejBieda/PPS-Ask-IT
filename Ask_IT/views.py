@@ -86,7 +86,6 @@ def rejestracja(request):
                   template_name="Ask_IT/rejestracja.html",
                   context={"form": form})
 
-                  {"kategorie": Category.objects.all})
 
 
 def pagedown(request):
