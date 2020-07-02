@@ -17,10 +17,15 @@
     <div id="categories">
         <div class="container my-5">
 
+            <!--                poziom 1-->
             <div id="categories-level-1" class="categories-accordion">
 
+                <!--                        poziom 1 karty-->
+                {% for i in categories %}
+                {% if i.parent == null %}
                 <div class="card">
-                    <div class="card-header bg-white px-0" id="categories-level-1-heading-1">
+
+                    <div class="card-header bg-white px-0" id="categories-level-1-heading-{{i.id}}">
                         <div class="row px-3">
                             <div class="col-xs-12 col-sm-12 col-md-9">
                                 <div class="media">
@@ -33,9 +38,8 @@
                                         </svg>
                                     </div>
                                     <div class="media-body mx-2">
-                                        <a href="#" class="category-title">Programowanie</a>
-                                        <p class="category-description mt-1">W tej kategorii znajdziesz różne języki
-                                            programowania.</p>
+                                        <a href="#" class="category-title">{{i.name}}</a>
+                                        <p class="category-description mt-1">{{i.description}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -48,8 +52,8 @@
                                 </div>
                             </div>
                             <button class="btn btn-link btn-block btn-sm" type="button" data-toggle="collapse"
-                                    data-target="#categories-level-1-collapse-1"
-                                    aria-expanded="true" aria-controls="categories-level-1-collapse-1">
+                                    data-target="#categories-level-1-collapse-{{i.id}}"
+                                    aria-expanded="true" aria-controls="categories-level-1-collapse-{{i.id}}">
                                     <span class="text-muted">
                                     <svg class="bi bi-chevron-double-down" width="1em" height="1em" viewBox="0 0 16 16"
                                          fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -62,50 +66,54 @@
                             </button>
                         </div>
 
+                    </div>
+                    <div id="categories-level-1-collapse-{{i.id}}" class="collapse"
+                         aria-labelledby="categories-level-1-heading-{{i.id}}"
+                         data-parent="#categories-level-1">
 
-                        <div id="categories-level-1-collapse-1" class="collapse"
-                             aria-labelledby="categories-level-1-heading-1"
-                             data-parent="#categories-level-1">
+                        <div class="card-body px-2">
+                            <!--                                    poziom 1 karta wyswietlanie-->
 
-                            <div class="card-body px-2">
+                            <!--                                    poziom 2-->
+                            <div id="categories-level-2" class="categories-accordion">
+                                <!--                                    poziom 2 karty-->
+                                {% for j in categories %}
+                                {% if j.parent.id == i.id %}
+                                <div class="card">
 
-                                <!--                                    poziom 2-->
-                                <div id="categories-level-2" class="categories-accordion">
-                                    <div class="card">
-
-                                        <div class="card-header px-0" id="categories-level-2-heading-1">
-                                            <div class="row px-3">
-                                                <div class="col-xs-12 col-sm-12 col-md-9">
-                                                    <div class="media">
-                                                        <div class="media-left category-icon">
-                                                            <svg class="bi bi-chat-square-dots-fill mt-1"
-                                                                 width="2em" height="2em"
-                                                                 viewBox="0 0 16 16"
-                                                                 fill="currentColor"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <path fill-rule="evenodd"
-                                                                      d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.5a1 1 0 0 0-.8.4l-1.9 2.533a1 1 0 0 1-1.6 0L5.3 12.4a1 1 0 0 0-.8-.4H2a2 2 0 0 1-2-2V2zm5 4a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-                                                            </svg>
-                                                        </div>
-                                                        <div class="media-body mx-2">
-                                                            <a href="#" class="category-title">Frameworki</a>
-                                                            <p class="category-description mt-1">Kategoria w której znajdują się różne frameworki języka Java.</p>
-                                                        </div>
+                                    <div class="card-header px-0" id="categories-level-2-heading-{{j.id}}">
+                                        <div class="row px-3">
+                                            <div class="col-xs-12 col-sm-12 col-md-9">
+                                                <div class="media">
+                                                    <div class="media-left">
+                                                        <svg class="bi bi-chat-square-dots-fill mt-1"
+                                                             width="2em" height="2em"
+                                                             viewBox="0 0 16 16"
+                                                             fill="currentColor"
+                                                             xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd"
+                                                                  d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.5a1 1 0 0 0-.8.4l-1.9 2.533a1 1 0 0 1-1.6 0L5.3 12.4a1 1 0 0 0-.8-.4H2a2 2 0 0 1-2-2V2zm5 4a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="media-body mx-2">
+                                                        <a href="#" class="category-title">{{j.name}}</a>
+                                                        <p class="category-description mt-1">{{j.description}}</p>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3 d-none d-md-block">
-                                                    <div class="media">
-                                                        <div class="media-body">
-                                                            <p class="category-threads my-0">39 wątków</p>
-                                                            <p class="category-posts my-0">121 odpowiedzi</p>
-                                                        </div>
+                                            </div>
+                                            <div class="col-md-3 d-none d-md-block">
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <p class="category-threads my-0">39 wątków</p>
+                                                        <p class="category-posts my-0">121 odpowiedzi</p>
                                                     </div>
                                                 </div>
-                                                <button class="btn btn-link btn-block btn-sm" type="button"
-                                                        data-toggle="collapse"
-                                                        data-target="#categories-level-2-collapse-1"
-                                                        aria-expanded="true"
-                                                        aria-controls="categories-level-2-collapse-1">
+                                            </div>
+                                            <button class="btn btn-link btn-block btn-sm" type="button"
+                                                    data-toggle="collapse"
+                                                    data-target="#categories-level-2-collapse-{{j.id}}"
+                                                    aria-expanded="true"
+                                                    aria-controls="categories-level-2-collapse-{{j.id}}">
                                     <span class="text-muted">
                                     <svg class="bi bi-chevron-double-down" width="1em" height="1em" viewBox="0 0 16 16"
                                          fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -115,130 +123,79 @@
                                               d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                                     </svg>
                                     </span>
-                                                </button>
-                                            </div>
+                                            </button>
                                         </div>
-
-                                        <div id="categories-level-2-collapse-1" class="collapse"
-                                             aria-labelledby="categories-level-2-heading-1"
-                                             data-parent="#categories-level-2">
-
-                                            <div class="card-body px-2">
-
-                                                <div id="categories-level-3" class="categories-accordion">
-                                                    <div class="card">
-
-                                                        <div class="card-header bg-white px-0"
-                                                             id="categories-level-3-heading-1">
-                                                            <div class="row px-3">
-                                                                <div class="col-xs-12 col-sm-12 col-md-9">
-                                                                    <div class="media">
-                                                                        <div class="media-left">
-                                                                            <svg class="bi bi-chat-square-dots-fill mt-1"
-                                                                                 width="2em" height="2em"
-                                                                                 viewBox="0 0 16 16"
-                                                                                 fill="currentColor"
-                                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                                <path fill-rule="evenodd"
-                                                                                      d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.5a1 1 0 0 0-.8.4l-1.9 2.533a1 1 0 0 1-1.6 0L5.3 12.4a1 1 0 0 0-.8-.4H2a2 2 0 0 1-2-2V2zm5 4a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-                                                                            </svg>
-                                                                        </div>
-                                                                        <div class="media-body mx-2">
-                                                                            <a href="#" class="category-title">Spring</a>
-                                                                            <p class="category-description mt-1">Kategoria dotycząca frameworka Spring.</p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-3 d-none d-md-block">
-                                                                    <div class="media">
-                                                                        <div class="media-body">
-                                                                            <p class="category-threads my-0">39
-                                                                                wątków</p>
-                                                                            <p class="category-posts my-0">121
-                                                                                odpowiedzi</p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
                                     </div>
-                                </div>
 
+                                    <div id="categories-level-2-collapse-{{j.id}}" class="collapse"
+                                         aria-labelledby="categories-level-2-heading-{{j.id}}"
+                                         data-parent="#categories-level-2">
+
+                                        <div class="card-body px-2">
+                                            <!--                                    poziom 2 karta wyswietlanie-->
+
+                                            <!--                                    poziom 3-->
+                                            <div id="categories-level-3" class="categories-accordion">
+
+                                                <!--                                    poziom 3 karty-->
+                                                {% for k in categories %}
+                                                {% if k.parent.id == j.id %}
+                                                <div class="card">
+
+                                                    <div class="card-header bg-white px-0"
+                                                         id="categories-level-3-heading-{{k.id}}">
+                                                        <div class="row px-3">
+                                                            <div class="col-xs-12 col-sm-12 col-md-9">
+                                                                <div class="media">
+                                                                    <div class="media-left">
+                                                                        <svg class="bi bi-chat-square-dots-fill mt-1"
+                                                                             width="2em" height="2em"
+                                                                             viewBox="0 0 16 16"
+                                                                             fill="currentColor"
+                                                                             xmlns="http://www.w3.org/2000/svg">
+                                                                            <path fill-rule="evenodd"
+                                                                                  d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.5a1 1 0 0 0-.8.4l-1.9 2.533a1 1 0 0 1-1.6 0L5.3 12.4a1 1 0 0 0-.8-.4H2a2 2 0 0 1-2-2V2zm5 4a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                                                                        </svg>
+                                                                    </div>
+                                                                    <div class="media-body mx-2">
+                                                                        <a href="#"
+                                                                           class="category-title">{{k.name}}</a>
+                                                                        <p class="category-description mt-1">
+                                                                            {{k.description}}</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 d-none d-md-block">
+                                                                <div class="media">
+                                                                    <div class="media-body">
+                                                                        <p class="category-threads my-0">39
+                                                                            wątków</p>
+                                                                        <p class="category-posts my-0">121
+                                                                            odpowiedzi</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                {% endif %}
+                                {% endfor %}
                             </div>
+
                         </div>
                     </div>
                 </div>
-<!--                <div class="card">-->
-<!--                    <div class="card-header" id="headingTwo">-->
-<!--                        <h2 class="mb-0">-->
-<!--                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"-->
-<!--                                    data-target="#collapseTwo" aria-expanded="false"-->
-<!--                                    aria-controls="collapseTwo">-->
-<!--                                Collapsible Group Item #2-->
-<!--                            </button>-->
-<!--                        </h2>-->
-<!--                    </div>-->
-<!--                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"-->
-<!--                         data-parent="#categories-level-1">-->
-<!--                        <div class="card-body">-->
-<!--                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry-->
-<!--                            richardson ad-->
-<!--                            squid.-->
-<!--                            3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa-->
-<!--                            nesciunt-->
-<!--                            laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid-->
-<!--                            single-origin-->
-<!--                            coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer-->
-<!--                            labore-->
-<!--                            wes-->
-<!--                            anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.-->
-<!--                            Leggings-->
-<!--                            occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably-->
-<!--                            haven't-->
-<!--                            heard-->
-<!--                            of them accusamus labore sustainable VHS.-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="card">-->
-<!--                    <div class="card-header" id="headingThree">-->
-<!--                        <h2 class="mb-0">-->
-<!--                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"-->
-<!--                                    data-target="#collapseThree" aria-expanded="false"-->
-<!--                                    aria-controls="collapseThree">-->
-<!--                                Collapsible Group Item #3-->
-<!--                            </button>-->
-<!--                        </h2>-->
-<!--                    </div>-->
-<!--                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"-->
-<!--                         data-parent="#categories-level-1">-->
-<!--                        <div class="card-body">-->
-<!--                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry-->
-<!--                            richardson ad-->
-<!--                            squid.-->
-<!--                            3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa-->
-<!--                            nesciunt-->
-<!--                            laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid-->
-<!--                            single-origin-->
-<!--                            coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer-->
-<!--                            labore-->
-<!--                            wes-->
-<!--                            anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.-->
-<!--                            Leggings-->
-<!--                            occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably-->
-<!--                            haven't-->
-<!--                            heard-->
-<!--                            of them accusamus labore sustainable VHS.-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
+                {% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>

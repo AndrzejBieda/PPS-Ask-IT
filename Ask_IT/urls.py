@@ -21,6 +21,13 @@ app_name = "Ask.IT"
 urlpatterns = [
     path("", views.index, name="index"),
     path("kategorie/", views.kategorie, name="kategorie"),
+    path("wpis/", views.wpis, name="wpis"),
+    path("nowe-pytanie/", views.question, name="nowe-pytanie"),
+    path("rejestracja/", views.rejestracja, name="rejestracja"),
+    path("logowanie/", views.login_request, name="logowanie"),
+    path("logout/", views.logout_request, name="logout"),
+    path("konto/", views.konto, name="konto"),
+    path("kategoria/", views.categoryThreads, name="kategoria"),
     path("pagedown/", views.pagedown, name="pagedown"),
     path("pokaz/", views.pokaz, name="pokaz")
 ]

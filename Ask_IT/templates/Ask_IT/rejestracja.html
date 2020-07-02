@@ -1,0 +1,29 @@
+{% extends 'Ask_IT/base.html' %}
+{% load static %}
+{% block content %}
+
+<div id="page">
+    <div id="header" class="bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 my-4 mx-2">
+                    <h1>Rejestracja</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="register">
+        <div class="container my-5">
+            <form class="form-horizontal" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button id="rej" name="rej" class="btn btn-success" type="submit">Rejestracja</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

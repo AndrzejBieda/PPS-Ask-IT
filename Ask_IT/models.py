@@ -17,7 +17,7 @@ class UserAdditional(models.Model):
 class Category(models.Model):
     name = models.TextField(max_length=100)
     description = models.TextField(max_length=100)
-    parent = models.ForeignKey("self", on_delete=models.CASCADE)
+    parent = models.ForeignKey("self", on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.name
