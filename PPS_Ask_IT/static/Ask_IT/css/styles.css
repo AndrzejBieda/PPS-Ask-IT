@@ -1,0 +1,97 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #172b4d;
+    background-color: #ffffff;
+}
+
+h1 {
+    color: #172b4d;
+    font-weight: 400;
+    font-size: 36px;
+}
+
+.navbar {
+    font-size: 18px;
+}
+
+.navbar-brand img {
+    height: 50px;
+    width: 50px;
+}
+
+.thread-title {
+    color: #5e6c84;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+.thread-title:hover {
+    color: #5e6c84;
+}
+
+.thread-detail-category {
+    color: #5e6c84;
+    font-size: 14px;
+}
+
+.thread-detail-category:hover {
+    color: #373f4c;
+}
+
+.thread-details-bottom {
+    color: #5e6c84;
+    font-size: 12px;
+}
+
+.thread-last-poster {
+    color: #172b4d;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.thread-last-poster:hover {
+    color: #172b4d;
+}
+
+.thread-last-reply {
+    color: #5e6c84;
+    font-size: 12px;
+}
+
+.thread-last-reply:hover {
+    color: #5e6c84;
+}
+
+.footer a {
+    color: #5e6c84;
+}
+
+.category-title {
+    color: #344563;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+.category-title:hover {
+    color: #344563;
+}
+
+.category-description{
+    font-size: 12px;
+}
+
+.category-threads{
+    color: #5e6c84;
+}
+
+.category-posts{
+     color: #5e6c84;
+ }
+
+.category-icon{
+    color: #344563;
+}
