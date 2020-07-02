@@ -1,12 +1,13 @@
 from django import forms
 from pagedown.widgets import PagedownWidget
 
-from Ask_IT.models import Question
+from Ask_IT.models import *
 
 
-class QuestionContent(forms.Form):
+class QuestionContent(forms.ModelForm):
+    title = forms.CharField()
     content = forms.CharField(widget=PagedownWidget())
 
     class Meta:
         model = Question
-        fields = ["content"]
+        fields = ["title", "content"]

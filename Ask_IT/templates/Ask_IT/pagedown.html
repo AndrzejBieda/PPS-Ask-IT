@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    {{ form.media }}
+    {% block head_extra %}
+{{ form.media }}
+    {% endblock head_extra %}
 </head>
 <body>
 
-<!--{% block head_extra %}-->
-<!--    {{ form.media }}-->
-<!--{% endblock head_extra %}-->
+
+    {{ form.media }}
+
 
 <form method="post">
     {% csrf_token %}
     {{ form }}
-<!--<input type="text" name="content" id="content">-->
-<!--&lt;!&ndash;    <textarea class="form-control" id="content" name="content" type="text"></textarea>&ndash;&gt;-->
-    <input type="submit" value="OK">
+    <input type="submit" value="Create">
 </form>
 
 </body>
