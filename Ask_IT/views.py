@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from Ask_IT.models import Category
 import datetime
@@ -28,13 +28,30 @@ def wpis(request):
 
 
 def question(request):
-    return render(request, 'Ask_IT/nowe-pytanie.html')
+    if request.method == 'POST':
+        form = QuestionContent(request.POST)
+        if form.is_valid():
+            titlefromform = request.POST.get('title')
+            contentfromform = form.cleaned_data.get('content')
+            datetoform = datetime.datetime.now()
+            authortoform = User.objects.get(username=request.user.username)
+            categorytoform = get_object_or_404(Category, pk=request.POST.get('category'))
+            a = Question(title=titlefromform, content=contentfromform, author=authortoform, date=datetoform,
+                         category=categorytoform)
+            a.save()
+            return HttpResponseRedirect('/')
+    else:
+        form = QuestionContent()
+        return render(request, 'Ask_IT/nowe-pytanie.html', {'form': form, "categories": Category.objects.all()})
+
 
 def konto(request):
     return render(request, 'Ask_IT/konto.html')
 
+
 def categoryThreads(request):
     return render(request, 'Ask_IT/kategoria-watki.html')
+
 
 def logout_request(request):
     logout(request)
@@ -85,7 +102,6 @@ def rejestracja(request):
     return render(request=request,
                   template_name="Ask_IT/rejestracja.html",
                   context={"form": form})
-
 
 
 def pagedown(request):

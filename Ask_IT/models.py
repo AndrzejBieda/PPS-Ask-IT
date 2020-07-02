@@ -27,7 +27,7 @@ class Question(models.Model):
     title = models.TextField()
     content = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    date = models.DateField()
+    date = models.DateTimeField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -37,7 +37,7 @@ class Question(models.Model):
 class Answer(models.Model):
     content = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    date = models.DateField()
+    date = models.DateTimeField()
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
     def __str__(self):

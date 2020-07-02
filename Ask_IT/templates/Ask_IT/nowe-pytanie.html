@@ -16,8 +16,20 @@
 
     <div id="question">
         <div class="container my-5">
-<!--tu trzeba dac to gowno do tworzenia nowego watku-->
-<!--            powinno sie to skladac z tytulu wyboru kategorii pewnie poprzez rozwijane menu i ten edytor, ktory dodales do projektu-->
+            <form method="post">
+                {% csrf_token %}
+                <label for="exampleSelect1">Tytuł postu</label>
+                <input class="form-control" type="text" name="title" required >
+                <label for="exampleSelect2">Kategoria</label>
+                <select class="form-control" name="category">
+                    {% for i in categories %}
+                    <option value="{{ i.id }}">{{ i.name }}</option>
+                    {% endfor %}
+                </select>
+                {{ form.content }}
+                <input type="submit" class="btn btn-primary" value="Utwórz post">
+            </form>
+
         </div>
 
     </div>

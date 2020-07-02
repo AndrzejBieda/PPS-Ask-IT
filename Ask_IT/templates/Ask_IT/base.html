@@ -17,6 +17,10 @@
 
 
     <title>Ask.IT</title>
+
+    {% block head_extra %}
+    {{ form.media }}
+    {% endblock head_extra %}
 </head>
 <body>
 
@@ -53,7 +57,8 @@
                 <a href="/nowe-pytanie" class="btn btn-info float-right mr-4" role="button">Nowe pytanie</a>
                 <a href="/logout" class="btn btn-dark mr-4" role="button">Wyloguj</a>
                 <a class="user-avatar" href="/konto" title="user2">
-                    <img class="rounded" src="{% static 'Ask_IT/img/avatar2.png' %}" alt="user avatar" width="40" height="40">
+                    <img class="rounded" src="{% static 'Ask_IT/img/avatar2.png' %}" alt="user avatar" width="40"
+                         height="40">
                 </a>
                 {% else %}
                 <a href="/logowanie" class="btn btn-outline-dark mr-2" role="button">Logowanie</a>

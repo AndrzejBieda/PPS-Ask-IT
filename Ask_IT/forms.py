@@ -5,9 +5,8 @@ from Ask_IT.models import *
 
 
 class QuestionContent(forms.ModelForm):
-    title = forms.CharField()
     content = forms.CharField(widget=PagedownWidget())
 
     class Meta:
         model = Question
-        fields = ["title", "content"]
+        fields = ["content"]
