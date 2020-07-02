@@ -95,3 +95,20 @@ h1 {
 .category-icon{
     color: #344563;
 }
+
+#thread .media-heading a{
+    display: block;
+    color: #172b4d;
+    font-weight: 500;
+    font-size: 25px;
+}
+
+#thread .media-heading span{
+    display: block;
+    color: #5e6c84;
+    font-size: 12px;
+}
+
+.post-date{
+    color: #5e6c84;
+}
