@@ -29,7 +29,7 @@ def kategorie(request):
                   {"categories": Category.objects.all()})
 
 
-def wpis(request):
+def pytanie(request, title):
     if request.method == 'POST':
         form = AnswerContent(request.POST)
         if form.is_valid():
@@ -42,7 +42,7 @@ def wpis(request):
             return HttpResponseRedirect('/')
     else:
         form = AnswerContent()
-        return render(request, 'Ask_IT/wpis.html',
+        return render(request, 'Ask_IT/pytanie.html',
                       {"form": form,
                        "question": Question.objects.all().first(),
                        "answers": Answer.objects.filter(question=Question.objects.all().first()),
@@ -75,9 +75,9 @@ def konto(request):
     return render(request, 'Ask_IT/konto.html')
 
 
-def categoryThreads(request, id):
-    if id:
-        category = get_object_or_404(Category, name=id)
+def categoryThreads(request, name):
+    if name:
+        category = get_object_or_404(Category, name=name)
         question = Question.objects.filter(category=category)
     context = {'category': category, 'question': question}
     return render(request, 'Ask_IT/kategoria-watki.html', context)

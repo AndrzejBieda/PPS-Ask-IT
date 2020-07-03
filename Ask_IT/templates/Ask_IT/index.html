@@ -14,8 +14,6 @@
         </div>
     </div>
 
-                        {{ k|add:"10" }}
-                        {{ k }}
     <div id="threads">
         <div class="container my-5">
             <div id="threads-list">
@@ -32,7 +30,7 @@
                                         </a>
                                     </div>
                                     <div class="media-body mx-2">
-                                        <a href="/wpis" class="thread-title">{{ i.title }}</a>
+                                        <a href="/pytanie/{{ i.title }}" class="thread-title">{{ i.title }}</a>
                                         <div class="row thread-details-bottom">
                                             <div class="col-xs-12 col-sm-12">
                                                 <a class="thread-detail-category" href="#">{{ i.category.name }}</a>

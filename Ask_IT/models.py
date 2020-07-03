@@ -53,9 +53,9 @@ class BestAnswer(models.Model):
         return self.question.title + ' ' + self.answer.author.username
 
 
-# class LastAnswer(models.Model):
-#     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='lastanswer')
-#     answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
-#
-#     def __str__(self):
-#         return self.question.title + ' ' + self.answer.author.username
+class LastAnswer(models.Model):
+    question = models.OneToOneField(Question, on_delete=models.CASCADE, related_name="lastanswer")
+    answer = models.OneToOneField(Answer, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.question.title + ' ' + self.answer.author.username
