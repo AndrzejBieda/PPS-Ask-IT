@@ -25,7 +25,7 @@
                                 <div class="media">
                                     <div class="media-left">
                                         <a class="user-avatar" href="#" title="{{ i.author.username }}">
-                                            <img class="rounded" src="{% static 'Ask_IT/img/avatar.png' %}"
+                                            <img class="rounded" src="/media/{{ i.author.profile.avatar }}"
                                                  alt="user avatar" width="40" height="40">
                                         </a>
                                     </div>
@@ -50,7 +50,7 @@
                                 <div class="media">
                                     <div class="media-left">
                                         <a class="user-avatar" href="#" title="user2">
-                                            <img class="rounded" src="{% static 'Ask_IT/img/avatar2.png' %}"
+                                            <img class="rounded" src="/media/{{ i.lastanswer.answer.author.profile.avatar }}"
                                                  alt="user avatar" width="40" height="40">
                                         </a>
                                     </div>
@@ -65,9 +65,9 @@
                     {% endfor %}
                 </ul>
             </div>
-            <div class="more d-flex justify-content-center mt-4">
-                <button type="button" class="btn btn-secondary">Pokaż więcej</button>
-            </div>
+<!--            <div class="more d-flex justify-content-center mt-4">-->
+<!--                <button type="button" class="btn btn-secondary">Pokaż więcej</button>-->
+<!--            </div>-->
         </div>
     </div>
 </div>
