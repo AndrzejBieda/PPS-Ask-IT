@@ -22,9 +22,21 @@
                 <input class="form-control" type="text" name="title" required >
                 <label for="exampleSelect2">Kategoria</label>
                 <select class="form-control" name="category">
-                    {% for i in categories %}
+                 {% for i in categories %}
+                    {% if i.parent == null %}
                     <option value="{{ i.id }}">{{ i.name }}</option>
+                    {% for j in categories %}
+                        {% if j.parent.id == i.id %}
+                        <option value="{{ j.id }}">--{{ j.name }}</option>
+                        {% for k in categories %}
+                            {% if k.parent.id == j.id %}
+                            <option value="{{ k.id }}">----{{ k.name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                        {% endif %}
                     {% endfor %}
+                    {% endif %}
+                {% endfor %}
                 </select>
                 {{ form.content }}
                 <input type="submit" class="btn btn-primary" value="Utwórz post">

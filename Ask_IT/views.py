@@ -28,29 +28,36 @@ def wpis(request):
 
 
 def question(request):
-    if request.method == 'POST':
-        form = QuestionContent(request.POST)
-        if form.is_valid():
-            titlefromform = request.POST.get('title')
-            contentfromform = form.cleaned_data.get('content')
-            datetoform = datetime.datetime.now()
-            authortoform = User.objects.get(username=request.user.username)
-            categorytoform = get_object_or_404(Category, pk=request.POST.get('category'))
-            a = Question(title=titlefromform, content=contentfromform, author=authortoform, date=datetoform,
-                         category=categorytoform)
-            a.save()
-            return HttpResponseRedirect('/')
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = QuestionContent(request.POST)
+            if form.is_valid():
+                titlefromform = request.POST.get('title')
+                contentfromform = form.cleaned_data.get('content')
+                datetoform = datetime.datetime.now()
+                authortoform = User.objects.get(username=request.user.username)
+                categorytoform = get_object_or_404(Category, pk=request.POST.get('category'))
+                a = Question(title=titlefromform, content=contentfromform, author=authortoform, date=datetoform,
+                             category=categorytoform)
+                a.save()
+                return HttpResponseRedirect('/')
+        else:
+            form = QuestionContent()
+            return render(request, 'Ask_IT/nowe-pytanie.html', {'form': form, "categories": Category.objects.all()})
     else:
-        form = QuestionContent()
-        return render(request, 'Ask_IT/nowe-pytanie.html', {'form': form, "categories": Category.objects.all()})
+        return redirect('../logowanie')
 
 
 def konto(request):
     return render(request, 'Ask_IT/konto.html')
 
 
-def categoryThreads(request):
-    return render(request, 'Ask_IT/kategoria-watki.html')
+def categoryThreads(request, id):
+    if id:
+        category = get_object_or_404(Category, name=id)
+        question = Question.objects.filter(category=category)
+    context = {'category': category, 'question': question}
+    return render(request, 'Ask_IT/kategoria-watki.html', context)
 
 
 def logout_request(request):
@@ -102,26 +109,3 @@ def rejestracja(request):
     return render(request=request,
                   template_name="Ask_IT/rejestracja.html",
                   context={"form": form})
-
-
-def pagedown(request):
-    if request.method == 'POST':
-        form = QuestionContent(request.POST)
-        if form.is_valid():
-            titlefromform = form.cleaned_data.get('title')
-            contentfromform = form.cleaned_data.get('content')
-            datetoform = datetime.datetime.now()
-            authortoform = User.objects.get(id=1)
-            categorytoform = Category.objects.get(id=3)
-            a = Question(title=titlefromform, content=contentfromform, author=authortoform, date=datetoform,
-                         category=categorytoform)
-            a.save()
-            return HttpResponseRedirect('../pokaz/')
-    else:
-        form = QuestionContent()
-        return render(request, 'Ask_IT/pagedown.html', {'form': form})
-
-
-def pokaz(request):
-    return render(request, 'Ask_IT/pokaz.html',
-                  {"questions": Question.objects.all()})
