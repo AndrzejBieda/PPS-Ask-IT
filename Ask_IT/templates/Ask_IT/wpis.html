@@ -50,9 +50,6 @@
                         </div>
                     </div>
                 </li>
-
-
-
                 <li class="post post-best-answer list-group-item border border-warning rounded mb-4 ">
                     <div class="panel">
                         <div class="panel-body">
@@ -61,32 +58,33 @@
                                     <div class="media">
                                         <div class="media-left mr-2">
                                             <a href="#">
-                                                <img class="rounded" src="/static/{{ ba.answer.author.profile.avatar }}"
+                                                <img class="rounded"
+                                                     src="/static/{{ question.bestanswer.answer.author.profile.avatar }}"
                                                      alt="user avatar" width="80" height="80">
                                             </a>
                                         </div>
                                         <div class="media-body">
                                             <div class="media-heading">
-                                                <a class="item-title" href="#">{{ question.bestanswer.answer.author.username }}</a>
+                                                <a class="item-title" href="#">{{
+                                                    question.bestanswer.answer.author.username }}</a>
                                                 <span class="user-status">Ostatnio widziany:<br/>{{ question.author.last_login }}</span>
-                                                <span class="user-rank">Reputacja: 44</span>
+                                                <span class="user-rank">Reputacja: {{ question.bestanswer.answer.author.profile.reputation }}</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-md-9">
                                     <div class="post-heading mb-3">
-                                        <span class="post-date">{{ ba.answer.date }}</span>
+                                        <span class="post-date">{{ question.bestanswer.answer.date }}</span>
                                     </div>
                                     <div class="post-body">
-                                        <p class="content-markdown">{{ ba.answer.content }}</p>
+                                        <p class="content-markdown">{{ question.bestanswer.answer.content }}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </li>
-
 
                 {% for a in answers %}
 
