@@ -57,7 +57,7 @@
                 <a href="/nowe-pytanie" class="btn btn-info float-right mr-4" role="button">Nowe pytanie</a>
                 <a href="/logout" class="btn btn-dark mr-4" role="button">Wyloguj</a>
                 <a class="user-avatar" href="/konto" title="{{ request.user.username }}">
-                    <img class="rounded" src="/static/{{ request.user.profile.avatar }}" alt="user avatar" width="40"
+                    <img class="rounded" src="/media/{{ request.user.profile.avatar }}" alt="user avatar" width="40"
                          height="40">
                 </a>
                 {% else %}

@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.core.files.storage import FileSystemStorage
 from django.shortcuts import render, redirect, get_object_or_404
 
 from Ask_IT.models import Category
@@ -58,6 +59,7 @@ def pytanie(request, idd):
                        })
 
 
+
 def question(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
@@ -80,6 +82,12 @@ def question(request):
 
 
 def konto(request):
+    if request.method == 'POST':
+        image = request.FILES['new_avatar']
+        # fs = FileSystemStorage()
+        # name = fs.save(image.name, image)
+        # url = fs.url(name)
+
     return render(request, 'Ask_IT/konto.html')
 
 

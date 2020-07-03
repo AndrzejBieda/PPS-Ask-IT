@@ -7,7 +7,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 my-4 mx-2">
-                    <h1>User</h1>
+                    <h1>{{ request.user.username }}</h1>
                 </div>
             </div>
         </div>
@@ -16,6 +16,23 @@
 
     <div id="user-profile">
         <div class="container my-5">
+            <img class="rounded" src="/media/{{ request.user.profile.avatar }}" alt="user avatar" width="200"
+                 height="200">
+            <label>Data dołączenia: {{ request.user.date_joined }}</label>
+            {% if request.user.is_staff %}
+            <label>Rodzaj konta: administrator</label>
+            {% else %}
+            <label>Rodzaj konta: użytkownik</label>
+            {% endif %}
+            <label>Reputacja: {{ request.user.profile.reputation }}</label>
+
+
+            <form method="post">
+                {% csrf_token %}
+                <i>Zmień awatar</i>
+                <input type="file" accept="image/*" name="new_avatar" required>
+                <input type="submit" value="Zmień">
+            </form>
 
         </div>
 
