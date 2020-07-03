@@ -27,6 +27,32 @@ def kategorie(request):
 
 
 def pytanie(request, id):
+    if request.method == 'POST' and 'best_answer_button' in request.POST:
+
+        questionfromform = get_object_or_404(Question, pk=request.POST.get('question'))
+        answerfromform = get_object_or_404(Answer, pk=request.POST.get('answer'))
+
+        a = BestAnswer(question=questionfromform, answer=answerfromform)
+
+        if BestAnswer.objects.filter(question=questionfromform):
+            b = BestAnswer.objects.filter(question=questionfromform)
+            b.update(answer=a.answer)
+
+            user_sub_rep = UserAdditional.objects.filter(user=b[0].answer.author)
+            user_sub_rep.update(reputation=a.answer.author.profile.reputation - 1)
+
+            user_add_add = UserAdditional.objects.filter(user=a.answer.author)
+            user_add_add.update(reputation=a.answer.author.profile.reputation + 1)
+
+        else:
+            a.save()
+
+            user_add_rep = UserAdditional.objects.filter(user=a.answer.author)
+            user_add_rep.update(reputation=a.answer.author.profile.reputation + 1)
+
+        strid = str(questionfromform.id)
+        return redirect('/pytanie/' + strid)
+
     if request.method == 'POST':
         form = AnswerContent(request.POST)
         if form.is_valid():
@@ -45,7 +71,7 @@ def pytanie(request, id):
             questionfromform.numberOfResponses = questionfromform.numberOfResponses + 1
             questionfromform.save()
             strid = str(questionfromform.id)
-            return redirect('/pytanie/'+strid)
+            return redirect('/pytanie/' + strid)
     else:
         form = AnswerContent()
         question = Question.objects.get(id=id)
@@ -55,7 +81,6 @@ def pytanie(request, id):
                        "question": question,
                        "answers": answers,
                        })
-
 
 
 def question(request):

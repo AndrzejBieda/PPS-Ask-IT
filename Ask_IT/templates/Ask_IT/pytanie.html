@@ -115,7 +115,10 @@
                                         {% if request.user == question.author %}
                                         <div class="post-best-answer float-right">
                                             <form method="post">
-                                                <button type="button" class="btn btn-outline-primary btn-sm">Najlepsza
+                                                {% csrf_token %}
+                                                <input type="hidden" name="question" value="{{ question.id }}">
+                                                <input type="hidden" name="answer" value="{{ a.id }}">
+                                                <button type="submit" name="best_answer_button" class="btn btn-outline-primary btn-sm">Najlepsza
                                                     odpowiedź
                                                 </button>
                                             </form>
