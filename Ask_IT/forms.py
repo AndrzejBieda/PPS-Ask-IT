@@ -10,3 +10,11 @@ class QuestionContent(forms.ModelForm):
     class Meta:
         model = Question
         fields = ["content"]
+
+
+class AnswerContent(forms.ModelForm):
+    content = forms.CharField(widget=PagedownWidget())
+
+    class Meta:
+        model = Answer
+        fields = ["content"]

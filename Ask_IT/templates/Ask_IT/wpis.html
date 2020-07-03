@@ -24,21 +24,16 @@
                                 <div class="col-xs-12 col-md-3 post-side">
                                     <div class="media">
                                         <div class="media-left mr-2">
-                                            {% for uaq in user_add_question %}
                                             <a href="#">
-                                                <img class="rounded" src="/static/{{ uaq.avatar }}"
+                                                <img class="rounded" src="/static/{{ question.author.profile.avatar }}"
                                                      alt="user avatar" width="80" height="80">
                                             </a>
-                                            {% endfor %}
-
                                         </div>
                                         <div class="media-body">
                                             <div class="media-heading">
                                                 <a class="item-title" href="#">{{ question.author.username }}</a>
                                                 <span class="user-status">Ostatnio widziany:<br/>{{ question.author.last_login }}</span>
-                                                {% for uaq in user_add_question %}
-                                                <span class="user-rank">Reputacja: {{ uaq.reputation }}</span>
-                                                {% endfor %}
+                                                <span class="user-rank">Reputacja: {{ question.author.profile.reputation }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -56,7 +51,7 @@
                     </div>
                 </li>
 
-                {% for ba in best_answer %}
+
 
                 <li class="post post-best-answer list-group-item border border-warning rounded mb-4 ">
                     <div class="panel">
@@ -66,14 +61,14 @@
                                     <div class="media">
                                         <div class="media-left mr-2">
                                             <a href="#">
-                                                <img class="rounded" src="{% static 'Ask_IT/img/avatar2.png' %}"
+                                                <img class="rounded" src="/static/{{ ba.answer.author.profile.avatar }}"
                                                      alt="user avatar" width="80" height="80">
                                             </a>
                                         </div>
                                         <div class="media-body">
                                             <div class="media-heading">
-                                                <a class="item-title" href="#">{{ ba.answer.author.username }}</a>
-                                                <span class="user-status">Offline</span>
+                                                <a class="item-title" href="#">{{ question.bestanswer.answer.author.username }}</a>
+                                                <span class="user-status">Ostatnio widziany:<br/>{{ question.author.last_login }}</span>
                                                 <span class="user-rank">Reputacja: 44</span>
                                             </div>
                                         </div>
@@ -84,9 +79,7 @@
                                         <span class="post-date">{{ ba.answer.date }}</span>
                                     </div>
                                     <div class="post-body">
-                                        <p class="content-markdown">
-                                            {{ ba.answer.content }}
-                                        </p>
+                                        <p class="content-markdown">{{ ba.answer.content }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +87,6 @@
                     </div>
                 </li>
 
-                {% endfor %}
 
                 {% for a in answers %}
 
@@ -106,15 +98,15 @@
                                     <div class="media">
                                         <div class="media-left mr-2">
                                             <a href="#">
-                                                <img class="rounded" src="{% static 'Ask_IT/img/avatar2.png' %}"
+                                                <img class="rounded" src="/static/{{ a.author.profile.avatar }}"
                                                      alt="user avatar" width="80" height="80">
                                             </a>
                                         </div>
                                         <div class="media-body">
                                             <div class="media-heading">
                                                 <a class="item-title" href="#">{{ a.author.username }}</a>
-                                                <span class="user-status">Offline</span>
-                                                <span class="user-rank">Reputacja: 44</span>
+                                                <span class="user-status">Ostatnio widziany:<br/>{{ question.author.last_login }}</span>
+                                                <span class="user-rank">Reputacja: {{ a.author.profile.reputation }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -122,11 +114,15 @@
                                 <div class="col-xs-12 col-md-9">
                                     <div class="post-heading mb-3">
                                         <span class="post-date">{{ a.date }}</span>
+                                        {% if request.user == question.author %}
                                         <div class="post-best-answer float-right">
-                                            <button type="button" class="btn btn-outline-primary btn-sm">Najlepsza
-                                                odpowiedź
-                                            </button>
+                                            <form method="post">
+                                                <button type="button" class="btn btn-outline-primary btn-sm">Najlepsza
+                                                    odpowiedź
+                                                </button>
+                                            </form>
                                         </div>
+                                        {% endif %}
                                     </div>
                                     <div class="post-body">
                                         <p>
@@ -140,9 +136,23 @@
                 </li>
                 {% endfor %}
             </ul>
+
             <div class="post-reply">
-                <!--            tu trzeba dac to coś do odpowiedzi-->
+                <div class="container my-5">
+                    {% if user.is_authenticated %}
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.content }}
+                        <input type="hidden" name="question" value="{{ question.id }}">
+                        <input type="submit" class="btn btn-primary" value="Dodaj komentarz">
+                    </form>
+                    {% else %}
+                    <h2 style="text-align: center;"><a href="/logowanie">Zaloguj się</a> aby dodać komentarz!</h2>
+                    {% endif %}
+                </div>
             </div>
+
+
         </div>
     </div>
 </div>

@@ -6,7 +6,7 @@ from django.db import models
 
 
 class UserAdditional(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     avatar = models.ImageField(upload_to='avatars', blank=True, null=True, default='Ask_IT/img/default_avatar.png')
     reputation = models.IntegerField(default=0)
 
@@ -45,8 +45,8 @@ class Answer(models.Model):
 
 
 class BestAnswer(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
+    question = models.OneToOneField(Question, on_delete=models.CASCADE, related_name="bestanswer")
+    answer = models.OneToOneField(Answer, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.question.title + ' ' + self.answer.author.username

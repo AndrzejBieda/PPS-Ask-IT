@@ -10,7 +10,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
 # Create your views here.
-from Ask_IT.forms import QuestionContent
+from Ask_IT.forms import *
 from Ask_IT.models import *
 
 
@@ -30,12 +30,24 @@ def kategorie(request):
 
 
 def wpis(request):
-    return render(request, 'Ask_IT/wpis.html',
-                  {"question": Question.objects.all().first(),
-                   "answers": Answer.objects.filter(question=Question.objects.all().first()),
-                   "best_answer": BestAnswer.objects.filter(question=Question.objects.all().first()),
-                   "user_add_question": UserAdditional.objects.filter(user=Question.objects.all().first().author),
-                   })
+    if request.method == 'POST':
+        form = AnswerContent(request.POST)
+        if form.is_valid():
+            contentfromform = form.cleaned_data.get('content')
+            authorfromform = User.objects.get(username=request.user.username)
+            datefromform = datetime.datetime.now()
+            questionfromform = get_object_or_404(Question, pk=request.POST.get('question'))
+            a = Answer(content=contentfromform, author=authorfromform, date=datefromform, question=questionfromform)
+            a.save()
+            return HttpResponseRedirect('/')
+    else:
+        form = AnswerContent()
+        return render(request, 'Ask_IT/wpis.html',
+                      {"form": form,
+                       "question": Question.objects.all().first(),
+                       "answers": Answer.objects.filter(question=Question.objects.all().first()),
+                       "best_answer": BestAnswer.objects.filter(question=Question.objects.all().first()),
+                       })
 
 
 def question(request):
@@ -54,7 +66,7 @@ def question(request):
                 return HttpResponseRedirect('/')
         else:
             form = QuestionContent()
-            return render(request, 'Ask_IT/nowe-pytanie.html', {'form': form, "categories": Category.objects.all()})
+            return render(request, 'Ask_IT/nowe-pytanie.html', {"form": form, "categories": Category.objects.all()})
     else:
         return redirect('../logowanie')
 
@@ -106,7 +118,7 @@ def rejestracja(request):
             username = form.cleaned_data.get('username')
             messages.success(request, f"New account created: {username}")
             login(request, user)
-            return redirect("main:homepage")
+            return redirect("..")
 
         else:
             for msg in form.error_messages:
@@ -120,7 +132,6 @@ def rejestracja(request):
     return render(request=request,
                   template_name="Ask_IT/rejestracja.html",
                   context={"form": form})
-
 
 # def countReplies():
 #     answers = Answer.objects.all()
