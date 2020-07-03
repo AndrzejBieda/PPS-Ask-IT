@@ -112,16 +112,6 @@ def question(request):
         return redirect('../logowanie')
 
 
-def konto(request):
-    if request.method == 'POST':
-        image = request.FILES['new_avatar']
-        # fs = FileSystemStorage()
-        # name = fs.save(image.name, image)
-        # url = fs.url(name)
-
-    return render(request, 'Ask_IT/konto.html')
-
-
 def categoryThreads(request, name):
     if name:
         category = get_object_or_404(Category, name=name)
