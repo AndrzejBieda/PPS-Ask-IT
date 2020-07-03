@@ -29,7 +29,7 @@ def kategorie(request):
                   {"categories": Category.objects.all()})
 
 
-def pytanie(request, title):
+def pytanie(request, id):
     if request.method == 'POST':
         form = AnswerContent(request.POST)
         if form.is_valid():
