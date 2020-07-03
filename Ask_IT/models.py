@@ -29,6 +29,7 @@ class Question(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateTimeField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    numberOfResponses = models.IntegerField(default=0);
 
     def __str__(self):
         return self.title
@@ -50,3 +51,11 @@ class BestAnswer(models.Model):
 
     def __str__(self):
         return self.question.title + ' ' + self.answer.author.username
+
+
+# class LastAnswer(models.Model):
+#     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='lastanswer')
+#     answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
+#
+#     def __str__(self):
+#         return self.question.title + ' ' + self.answer.author.username
