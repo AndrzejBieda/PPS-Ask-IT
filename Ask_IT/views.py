@@ -29,7 +29,7 @@ def kategorie(request):
                   {"categories": Category.objects.all()})
 
 
-def pytanie(request, id):
+def pytanie(request, idd):
     if request.method == 'POST':
         form = AnswerContent(request.POST)
         if form.is_valid():
@@ -39,6 +39,14 @@ def pytanie(request, id):
             questionfromform = get_object_or_404(Question, pk=request.POST.get('question'))
             a = Answer(content=contentfromform, author=authorfromform, date=datefromform, question=questionfromform)
             a.save()
+            if LastAnswer.objects.filter(question=questionfromform):
+                last = LastAnswer.objects.filter(question=questionfromform)
+                last.update(answer=a)
+            else:
+                LastAnswer(question=questionfromform, answer=a).save()
+
+            questionfromform.numberOfResponses = questionfromform.numberOfResponses + 1
+            questionfromform.save()
             return HttpResponseRedirect('/')
     else:
         form = AnswerContent()
@@ -140,11 +148,3 @@ def rejestracja(request):
     return render(request=request,
                   template_name="Ask_IT/rejestracja.html",
                   context={"form": form})
-
-# def countReplies():
-#     answers = Answer.objects.all()
-#     a = 0
-#     for i in answers:
-#         if(Question.objects.filter(headline__contains=i.name).count()):
-#             a
-#     return 0
