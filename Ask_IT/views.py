@@ -45,7 +45,7 @@ def pytanie(request, id):
             questionfromform.numberOfResponses = questionfromform.numberOfResponses + 1
             questionfromform.save()
             strid = str(questionfromform.id)
-            return redirect('/pytanie/'+strid)
+            return redirect('/pytanie/' + strid)
     else:
         form = AnswerContent()
         question = Question.objects.get(id=id)
@@ -55,7 +55,6 @@ def pytanie(request, id):
                        "question": question,
                        "answers": answers,
                        })
-
 
 
 def question(request):

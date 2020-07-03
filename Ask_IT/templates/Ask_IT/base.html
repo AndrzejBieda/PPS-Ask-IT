@@ -48,10 +48,6 @@
                         <a class="nav-link" href="#">Użytkownicy</a>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input aria-label="Search" class="form-control mr-sm-2" placeholder="Wyszukiwanie" type="search">
-                    <button class="btn btn-outline-success my-2 my-sm-0 mr-5" type="submit">Wyszukiwanie</button>
-                </form>
 
                 {% if user.is_authenticated %}
                 <a href="/nowe-pytanie" class="btn btn-info float-right mr-4" role="button">Nowe pytanie</a>
@@ -96,8 +92,8 @@
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-    $(document).ready(function() {
-        $(".content-markdown").each(function() {
+    $(document).ready(function () {
+        $(".content-markdown").each(function () {
             var content = $(this).text()
             var markedContent = marked(content)
             $(this).html(markedContent)
