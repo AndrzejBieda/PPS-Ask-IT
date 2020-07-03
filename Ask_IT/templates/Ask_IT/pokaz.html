@@ -8,7 +8,7 @@
 <body>
 {% for i in questions %}
 
-<pre class="content-markdown prettyprint">{{ i.content }}</pre>
+<p class="content-markdown">{{ i.content }}</p>
 
 
 {% endfor %}
@@ -29,9 +29,6 @@
             $(this).html(markedContent)
         })
     })
-
-
-
 </script>
 
 </body>

@@ -7,7 +7,7 @@ from django.db import models
 
 class UserAdditional(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to='avatars', blank=True, null=True)
+    avatar = models.ImageField(upload_to='avatars', blank=True, null=True, default='Ask_IT/img/default_avatar.png')
     reputation = models.IntegerField(default=0)
 
     def __str__(self):

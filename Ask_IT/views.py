@@ -15,7 +15,13 @@ from Ask_IT.models import *
 
 
 def index(request):
-    return render(request, 'Ask_IT/index.html')
+    # answers = Answer.objects.all()
+    # questions = Question.objects.all()
+    # totalAnswers = []
+    # for i in questions:
+    #     Answer.objects.filter(headline__contains=).count()
+    return render(request, 'Ask_IT/index.html',
+                  {"questions": Question.objects.all()})
 
 
 def kategorie(request):
@@ -24,7 +30,12 @@ def kategorie(request):
 
 
 def wpis(request):
-    return render(request, 'Ask_IT/wpis.html')
+    return render(request, 'Ask_IT/wpis.html',
+                  {"question": Question.objects.all().first(),
+                   "answers": Answer.objects.filter(question=Question.objects.all().first()),
+                   "best_answer": BestAnswer.objects.filter(question=Question.objects.all().first()),
+                   "user_add_question": UserAdditional.objects.filter(user=Question.objects.all().first().author),
+                   })
 
 
 def question(request):
@@ -125,3 +136,11 @@ def pagedown(request):
 def pokaz(request):
     return render(request, 'Ask_IT/pokaz.html',
                   {"questions": Question.objects.all()})
+
+# def countReplies():
+#     answers = Answer.objects.all()
+#     a = 0
+#     for i in answers:
+#         if(Question.objects.filter(headline__contains=i.name).count()):
+#             a
+#     return 0
