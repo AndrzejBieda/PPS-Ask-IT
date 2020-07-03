@@ -21,6 +21,14 @@ def index(request):
                   {"questions": Question.objects.all()})
 
 
+def user(request, username):
+    if username:
+        user = get_object_or_404(User, username=username)
+        questions = Question.objects.filter(author=user)
+    context = {'user': user, 'questions': questions}
+    return render(request, 'Ask_IT/user.html', context)
+
+
 def kategorie(request):
     return render(request, 'Ask_IT/kategorie.html',
                   {"categories": Category.objects.all()})

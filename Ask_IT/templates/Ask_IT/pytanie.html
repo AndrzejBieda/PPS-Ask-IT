@@ -24,14 +24,14 @@
                                 <div class="col-xs-12 col-md-3 post-side">
                                     <div class="media">
                                         <div class="media-left mr-2">
-                                            <a href="#">
+                                            <a href="/user/{{ question.author.username }}">
                                                 <img class="rounded" src="/media/{{ question.author.profile.avatar }}"
                                                      alt="user avatar" width="80" height="80">
                                             </a>
                                         </div>
                                         <div class="media-body">
                                             <div class="media-heading">
-                                                <a class="item-title" href="#">{{ question.author.username }}</a>
+                                                <a class="item-title" href="/user/{{ question.author.username }}">{{ question.author.username }}</a>
                                                 <span class="user-status">Ostatnio widziany:<br/>{{ question.author.last_login }}</span>
                                                 <span class="user-rank">Reputacja: {{ question.author.profile.reputation }}</span>
                                             </div>
@@ -58,7 +58,7 @@
                                 <div class="col-xs-12 col-md-3 post-side">
                                     <div class="media">
                                         <div class="media-left mr-2">
-                                            <a href="#">
+                                            <a href="/user/{{ question.bestanswer.answer.author.username }}">
                                                 <img class="rounded"
                                                      src="/media/{{ question.bestanswer.answer.author.profile.avatar }}"
                                                      alt="user avatar" width="80" height="80">
@@ -66,7 +66,7 @@
                                         </div>
                                         <div class="media-body">
                                             <div class="media-heading">
-                                                <a class="item-title" href="#">{{ question.bestanswer.answer.author.username }}</a>
+                                                <a class="item-title" href="/user/{{ question.bestanswer.answer.author.username }}">{{ question.bestanswer.answer.author.username }}</a>
                                                 <span class="user-status">Ostatnio widziany:<br/>{{ question.author.last_login }}</span>
                                                 <span class="user-rank">Reputacja: {{ question.bestanswer.answer.author.profile.reputation }}</span>
                                             </div>
@@ -95,14 +95,14 @@
                                 <div class="col-xs-12 col-md-3 post-side">
                                     <div class="media">
                                         <div class="media-left mr-2">
-                                            <a href="#">
+                                            <a href="/user/{{ a.author.username }}">
                                                 <img class="rounded" src="/media/{{ a.author.profile.avatar }}"
                                                      alt="user avatar" width="80" height="80">
                                             </a>
                                         </div>
                                         <div class="media-body">
                                             <div class="media-heading">
-                                                <a class="item-title" href="#">{{ a.author.username }}</a>
+                                                <a class="item-title" href="/user/{{ a.author.username }}">{{ a.author.username }}</a>
                                                 <span class="user-status">Ostatnio widziany:<br/>{{ question.author.last_login }}</span>
                                                 <span class="user-rank">Reputacja: {{ a.author.profile.reputation }}</span>
                                             </div>

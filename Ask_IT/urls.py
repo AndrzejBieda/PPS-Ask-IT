@@ -28,4 +28,5 @@ urlpatterns = [
     path("logout/", views.logout_request, name="logout"),
     path("konto/", views.konto, name="konto"),
     path("kategoria/<str:name>", views.categoryThreads, name="kategoria"),
+    path("user/<str:username>", views.user, name="user"),
 ]
