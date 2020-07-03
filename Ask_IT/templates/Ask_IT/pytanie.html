@@ -50,6 +50,7 @@
                         </div>
                     </div>
                 </li>
+                {% if question.bestanswer %}
                 <li class="post post-best-answer list-group-item border border-warning rounded mb-4 ">
                     <div class="panel">
                         <div class="panel-body">
@@ -84,7 +85,7 @@
                         </div>
                     </div>
                 </li>
-
+                {% endif %}
                 {% for a in answers %}
 
                 <li class="post list-group-item border rounded mb-4">

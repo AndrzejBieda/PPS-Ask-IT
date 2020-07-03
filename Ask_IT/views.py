@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy
 
 from Ask_IT.models import Category
 import datetime
@@ -15,13 +16,8 @@ from Ask_IT.models import *
 
 
 def index(request):
-    # answers = Answer.objects.all()
-    # questions = Question.objects.all()
-    # totalAnswers = []
-    # for i in questions:
-    #     Answer.objects.filter(headline__contains=).count()
     return render(request, 'Ask_IT/index.html',
-                  {"questions": Question.objects.all(), "answers": Answer.objects.all()})
+                  {"questions": Question.objects.all()})
 
 
 def kategorie(request):
@@ -29,7 +25,7 @@ def kategorie(request):
                   {"categories": Category.objects.all()})
 
 
-def pytanie(request, idd):
+def pytanie(request, id):
     if request.method == 'POST':
         form = AnswerContent(request.POST)
         if form.is_valid():
@@ -47,14 +43,16 @@ def pytanie(request, idd):
 
             questionfromform.numberOfResponses = questionfromform.numberOfResponses + 1
             questionfromform.save()
-            return HttpResponseRedirect('/')
+            strid = str(questionfromform.id)
+            return redirect('/pytanie/'+strid)
     else:
         form = AnswerContent()
+        question = Question.objects.get(id=id)
+        answers = Answer.objects.filter(question=question)
         return render(request, 'Ask_IT/pytanie.html',
                       {"form": form,
-                       "question": Question.objects.all().first(),
-                       "answers": Answer.objects.filter(question=Question.objects.all().first()),
-                       "best_answer": BestAnswer.objects.filter(question=Question.objects.all().first()),
+                       "question": question,
+                       "answers": answers,
                        })
 
 
@@ -86,8 +84,8 @@ def konto(request):
 def categoryThreads(request, name):
     if name:
         category = get_object_or_404(Category, name=name)
-        question = Question.objects.filter(category=category)
-    context = {'category': category, 'question': question}
+        questions = Question.objects.filter(category=category)
+    context = {'category': category, 'questions': questions}
     return render(request, 'Ask_IT/kategoria-watki.html', context)
 
 
