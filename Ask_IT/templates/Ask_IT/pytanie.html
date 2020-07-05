@@ -31,7 +31,8 @@
                                         </div>
                                         <div class="media-body">
                                             <div class="media-heading">
-                                                <a class="item-title" href="/user/{{ question.author.username }}">{{ question.author.username }}</a>
+                                                <a class="item-title" href="/user/{{ question.author.username }}">
+                                                    {{ question.author.username }}</a>
                                                 <span class="user-status">Ostatnio widziany:<br/>{{ question.author.last_login }}</span>
                                                 <span class="user-rank">Reputacja: {{ question.author.profile.reputation }}</span>
                                             </div>
@@ -66,7 +67,9 @@
                                         </div>
                                         <div class="media-body">
                                             <div class="media-heading">
-                                                <a class="item-title" href="/user/{{ question.bestanswer.answer.author.username }}">{{ question.bestanswer.answer.author.username }}</a>
+                                                <a class="item-title"
+                                                   href="/user/{{ question.bestanswer.answer.author.username }}">
+                                                    {{ question.bestanswer.answer.author.username }}</a>
                                                 <span class="user-status">Ostatnio widziany:<br/>{{ question.author.last_login }}</span>
                                                 <span class="user-rank">Reputacja: {{ question.bestanswer.answer.author.profile.reputation }}</span>
                                             </div>
@@ -85,7 +88,9 @@
                         </div>
                     </div>
                 </li>
+
                 {% endif %}
+
                 {% for a in answers %}
 
                 <li class="post list-group-item border rounded mb-4">
@@ -102,7 +107,8 @@
                                         </div>
                                         <div class="media-body">
                                             <div class="media-heading">
-                                                <a class="item-title" href="/user/{{ a.author.username }}">{{ a.author.username }}</a>
+                                                <a class="item-title" href="/user/{{ a.author.username }}">
+                                                    {{ a.author.username }}</a>
                                                 <span class="user-status">Ostatnio widziany:<br/>{{ question.author.last_login }}</span>
                                                 <span class="user-rank">Reputacja: {{ a.author.profile.reputation }}</span>
                                             </div>
@@ -118,15 +124,16 @@
                                                 {% csrf_token %}
                                                 <input type="hidden" name="question" value="{{ question.id }}">
                                                 <input type="hidden" name="answer" value="{{ a.id }}">
-                                                <button type="submit" name="best_answer_button" class="btn btn-outline-primary btn-sm">Najlepsza
-                                                    odpowiedź
+                                                <button type="submit" name="best_answer_button"
+                                                        class="btn btn-outline-primary btn-sm">
+                                                    Najlepsza odpowiedź
                                                 </button>
                                             </form>
                                         </div>
                                         {% endif %}
                                     </div>
                                     <div class="post-body">
-                                        <p>
+                                        <p class="content-markdown">
                                             {{ a.content }}
                                         </p>
                                     </div>
@@ -148,7 +155,9 @@
                         <input type="submit" class="btn btn-primary" value="Dodaj komentarz">
                     </form>
                     {% else %}
-                    <h2 style="text-align: center;"><a href="/logowanie">Zaloguj się</a> aby dodać komentarz!</h2>
+                    <h2 style="text-align: center;">
+                        <a href="/logowanie">Zaloguj się</a> aby dodać komentarz!
+                    </h2>
                     {% endif %}
                 </div>
             </div>
