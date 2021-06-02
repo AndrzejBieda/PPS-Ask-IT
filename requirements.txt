@@ -32,5 +32,5 @@ requests==2.23.0
 shodan==1.23.0
 six==1.11.0
 sqlparse==0.3.0
-urllib3==1.25.7
+urllib3==1.26.5
 XlsxWriter==1.2.9
